@@ -1,0 +1,78 @@
+REFERENCE:https://docs.djangoproject.com/en/2.1/
+ADMIN: username: admin, password: thisisagoodpassword
+
+
+
+Creating an App
+  to create a new app, use pyyhton3 manage.py startapp APPNAME, but also make sure the virtual environment is activated.
+  Do this by doing using the source command.
+  doing the above step will give you a bunch of files, hers what they do:
+    migrations
+      hook up or connect the website to the source code and database
+    init.py
+      helps python recognize this is a package
+    admin.py
+      admin functionality for doing admin stuff, like deleting users, accessing the data base, etc
+    app.py
+      settings for the app
+    models.py
+      template for the database and how to store the data for the data base.
+    tests.py
+      make tests for code
+    views.py
+      python functions that take user requests and give them back a response
+
+  You can use /admin/ to get to the admin page, the urls.py handles users accessing the webpage BUT
+  for apps you should put their urls in the respective app folder
+  when a user attempts to access a webpage, it goes to the urls file of the website. You can
+  then link the urls of the apps you make.
+
+  Django comes with a defualt databse, sqlite3, django also comes with a bunch of default apps as well
+  You must run the migrate command in order to resync the code with the database
+
+  Models:
+    a blueprint of how you want to store your data
+    u can write python classes to define the data types in the models file.
+    the ForeignKey is needed to identify the other class that the current class is a part of
+    say there is a product class and a company class. the product has a company associated with it, so
+    Foreign key is used to tell the product that it is part of that company's list.
+
+    ondelete Cascade means if you deleting the upper class, delete the other things associated with it
+    example, with the company product example, if you delete the company, the products get deleted as well
+
+    After models have been created or changed, use the make migration command then migrate to sync databases
+  Database Api
+    To access the database and run commands and stuff, run python3 manage.py shell
+    herer you can create new instances of the models you wrote before. declare them like
+    you would in declaring a new instance of a class in python
+    You have to use the instance.save() in order to actually save what you have written to the database
+    use instances.id to access the primary key of the item
+    you can modify the attributes in this shell, but remember to run the save command to apply the changes
+    u can use Object.objects.filter(someattributetofind) to find an object with stuff
+  Admin Interface
+    create and admin profile using python3 manage.py createsuperuser
+    you can change the database data through the admin login by adding to the admin.py
+    in the models package and registering it. now you can modfify the database without having to do it through
+    the command shell
+  URL stuff
+    add <type:varname> to grab an type from the requested url, like an integer or string, then you can use it in the
+    function in views
+  Separating webdesign from django code
+    TEMPLATES!
+    html templates can be used to make the display much prettier than bland white background and black text
+    more for front end development
+    to run python code in the html template, surround the code in {%your code here%}
+    this can be helpful for doing things like checking if a list is empty or whatever.
+    the render function returns an http response given a request, template filepath and required data
+    making handling request very concise and organized.
+  Raising 404 errors
+    to notify the user that the page doesnt exist, import the built in django
+    404 http module and then return that instead of a regular HttpResponse
+  Related objects set
+    AS with the exmaple I've coded, A product has a relation to the company, so
+    when an product object is created, it is added to the product sett in the Company object
+    this can be used to create songs much quicker this can be accessed by doing classInstance.subClassInstance_set.
+  DONT HARDCODE URLS, IT MAKES CHANGING THINGS DIFFICULT
+    you can delcare an app namespace in order to make it so that it properly adds to the URL
+  Forms
+    

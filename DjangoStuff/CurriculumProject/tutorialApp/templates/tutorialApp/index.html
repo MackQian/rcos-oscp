@@ -1,0 +1,11 @@
+{%if all_companies %}<!-- python code!-->
+<!-- very simple list template-->
+  <h1>Companies List</h1>
+  <ul>
+    {%for company in all_companies %}
+    <li><a href="{%url 'tutorialApp:detail' company.id%}">{{ company.name }}</a></li>
+    {% endfor %}
+  </ul>
+{% else %}
+  <<h3>No companies added!</h3>
+{% endif %}

@@ -1,0 +1,8 @@
+<img src="{{company.logo}}">
+<h1>{{ company }}</h1>
+<h3>Product List:</h3>
+<ul>
+  {%for product in company.product_set.all %}
+  <li>{{product.productName}} - ${{product.price}}</li>
+  {% endfor %}
+</ul>
